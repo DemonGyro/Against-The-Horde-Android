@@ -3,47 +3,59 @@ package com.github.againstthehorde.model
 import android.graphics.drawable.Drawable
 import java.util.*
 
-//struct CardsToCast {
-//    var cardsFromGraveyard: [Card]
-//    var tokensFromLibrary: [Card]
-//    var cardFromLibrary: Card
-//}
-
 enum class CardType {
-    token,
-    creature,
-    enchantment,
-    artifact,
-    sorcery,
-    instant
+    Token,
+    Creature,
+    Enchantment,
+    Artifact,
+    Sorcery,
+    Instant
 }
 
-//struct DeckEditorCardList {
-//    var deckList: MainDeckList
-//    var tooStrongPermanentsList: [Card]
-//    var availableTokensList: [Card]
-//    var weakPermanentsList: [Card]
-//    var powerfullPermanentsList: [Card]
-//}
-//
-//struct MainDeckList {
-//    var creatures: [Card]
-//    var tokens: [Card]
-//    var instantsAndSorceries: [Card]
-//    var artifactsAndEnchantments: [Card]
-//}
+data class CardsToCast(
+    val cardsFromGraveyard: List<Card>,
+    val tokensFromLibrary: List<Card>,
+    val cardFromLibrary: Card
+)
 
-class Card: Cloneable {
+data class MainDeckList(
+    val creatures: List<Card>,
+    val tokens: List<Card>,
+    val instantsAndSorceries: List<Card>,
+    val artifactsAndEnchantments: List<Card>
+)
+
+data class DeckEditorCardList(
+    val deckList: MainDeckList,
+    val tooStrongPermanentsList: List<Card>,
+    val availableTokensList: List<Card>,
+    val weakPermanentsList: List<Card>,
+    val powerfulPermanentsList: List<Card>
+)
+
+open class Card
+    (
+    cardName: String,// Can be changed in deck editor
+    private var cardType: CardType,
+    cardImageUrl: String? = null,
+    private var cardUIImage: Drawable? = null,
+    private var hasFlashback: Boolean = false,
+    private var specificSet: String? = null,// Unique id of a card but same for each reprints
+    private var cardOracleId: String? = null,// Unique id of card and unique between reprints
+    private var cardId: String? = null
+) {
+    // static functions and variables
     companion object {
-        fun getUrlCardName(cardName: String): String {
-            return cardName
-                .replace(" ", "-")
-                .replace("\"", "")
-                .replace(",", "") // Maybe "-" instead of "" ?????
-                .replace("'", "")
+
+        private fun getScryfallImageUrl(cardId: String): String {
+            val cardResolution = "normal"
+            val url = "https://api.scryfall.com/cards/$cardId?format=img&version=$cardResolution"
+
+            print(url)
+            return url
         }
 
-        fun getScryfallImageUrlFromCardName(cardName: String, specificSet: String?): String? {
+        private fun getScryfallImageUrl(cardName: String, specificSet: String?): String {
             // Examples
             // https://api.scryfall.com/cards/named?exact=Zombie-Giant&format=img&version=normal
             // https://api.scryfall.com/cards/named?exact=Amethyst-Dragon-//-Explosive-Crystal&format=img&version=normal
@@ -60,56 +72,36 @@ class Card: Cloneable {
             return url
         }
 
-        fun getScryfallImageUrl(cardId: String): String {
-            val cardResolution = "normal"
-            val url = "https://api.scryfall.com/cards/$cardId?format=img&version=$cardResolution"
-
-            print(url)
-            return url
+        private fun getUrlCardName(cardName: String): String {
+            return cardName
+                .replace(" ", "-")
+                .replace("\"", "")
+                .replace(",", "") // Maybe "-" instead of "" ?????
+                .replace("'", "")
         }
 
         fun emptyCard(): Card {
-            return Card("Polyraptor", CardType.token)
+            return Card("Polyraptor", CardType.Token)
         }
     }
 
     private val uuid: UUID = UUID.randomUUID()
     private var cardName: String
-    private var cardType: CardType          // Can be changed in deckeditor
     private var cardImageUrl: String?
-    private var cardUIImage: Drawable?
-    private var hasFlashback: Boolean
-    private var specificSet: String?
-    private var cardOracleId: String?       // Unique id of a card but same for each reprints
-    private var cardId: String?             // Unique id of card and unique between reprints
     private var cardCount: Int = 1
 
-    constructor(cardName: String, cardType: CardType,
-                cardImageUrl: String? = null,
-                cardUIImage: Drawable? = null,
-                hasFlashback: Boolean = false,
-                specificSet: String? = null,
-                cardOracleId: String? = null,
-                cardId: String? = null) {
-        this.cardType = cardType;
-        this.cardUIImage = cardUIImage;
-        this.hasFlashback = hasFlashback;
-        this.specificSet = specificSet;
-        this.cardOracleId = cardOracleId;
-        this.cardId = cardId;
-
+    init {
         // Remove after "//" in name, example : "Amethyst Dragon // Explosive Crystal" -> only keep Amethyst Dragon
         val indexOfSlashes = cardName.indexOf(" //")
         this.cardName = cardName.substring(if (indexOfSlashes >= 0) indexOfSlashes + 4 else 0).trim()
-
         if (cardImageUrl == null) {
             if (cardId != null) {
-                this.cardImageUrl = getScryfallImageUrl(cardId)
+                this.cardImageUrl = getScryfallImageUrl(cardId!!)
             } else {
-                this.cardImageUrl = getScryfallImageUrlFromCardName(cardName, specificSet)
+                this.cardImageUrl = getScryfallImageUrl(cardName, specificSet)
             }
         } else {
-            this.cardImageUrl = cardImageUrl;
+            this.cardImageUrl = cardImageUrl
         }
     }
 
@@ -127,7 +119,39 @@ class Card: Cloneable {
 
     fun recreateCard(): Card {
         val tmpCard = Card(this.cardName, this.cardType, this.cardImageUrl, this.cardUIImage, this.hasFlashback, this.specificSet, this.cardOracleId, this.cardId)
-        tmpCard.cardCount = this.cardCount;
+        tmpCard.cardCount = this.cardCount
         return tmpCard
+    }
+}
+
+class CardFromCardSearch(
+    cardName: String,
+    cardType: CardType,
+    cardImageUrl: String? = null,
+    cardUIImage: Drawable? = null,
+    hasFlashback: Boolean = false,
+    specificSet: String? = null,
+    cardOracleId: String? = null,
+    cardId: String? = null,
+    private var manaCost: String?
+) : Card(
+    cardName,
+    cardType,
+    cardImageUrl,
+    cardUIImage,
+    hasFlashback,
+    specificSet,
+    cardOracleId,
+    cardId
+) {
+
+    // From {3}{R}{W} to ["3", "R", "W"]
+    fun getManaCostArray(): List<String> {
+        if (this.manaCost == null) {
+            return emptyList()
+        }
+
+        val matches = "\\{(.*?)}".toRegex().findAll(this.manaCost!!)
+        return matches.map { it.groupValues[1] }.toList()
     }
 }
