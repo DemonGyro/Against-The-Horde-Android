@@ -9,40 +9,50 @@ enum class CardType {
     Enchantment,
     Artifact,
     Sorcery,
-    Instant
+    Instant,
+    Unknown
 }
 
+data class HordeDeck(
+    var deck: MutableList<Card>,
+    var availableTokensList: List<Card>,
+    var tooStrongPermanentsList: List<Card>,
+    var weakPermanentsList: List<Card>,
+    var powerfulPermanentsList: List<Card>
+)
+
 data class CardsToCast(
-    val cardsFromGraveyard: List<Card>,
-    val tokensFromLibrary: List<Card>,
-    val cardFromLibrary: Card
+    var cardsFromGraveyard: List<Card>,
+    var tokensFromLibrary: List<Card>,
+    var cardFromLibrary: Card
 )
 
 data class MainDeckList(
-    val creatures: List<Card>,
-    val tokens: List<Card>,
-    val instantsAndSorceries: List<Card>,
-    val artifactsAndEnchantments: List<Card>
+    var creatures: List<Card>,
+    var tokens: List<Card>,
+    var instantsAndSorceries: List<Card>,
+    var artifactsAndEnchantments: List<Card>
 )
 
 data class DeckEditorCardList(
-    val deckList: MainDeckList,
-    val tooStrongPermanentsList: List<Card>,
-    val availableTokensList: List<Card>,
-    val weakPermanentsList: List<Card>,
-    val powerfulPermanentsList: List<Card>
+    var deckList: MainDeckList,
+    var tooStrongPermanentsList: List<Card>,
+    var availableTokensList: List<Card>,
+    var weakPermanentsList: List<Card>,
+    var powerfulPermanentsList: List<Card>
 )
 
 open class Card
     (
     cardName: String,// Can be changed in deck editor
-    private var cardType: CardType,
+    internal var cardType: CardType,
     cardImageUrl: String? = null,
     private var cardUIImage: Drawable? = null,
     private var hasFlashback: Boolean = false,
     private var specificSet: String? = null,// Unique id of a card but same for each reprints
     private var cardOracleId: String? = null,// Unique id of card and unique between reprints
-    private var cardId: String? = null
+    private var cardId: String? = null,
+    cardCount: Int = 1
 ) {
     // static functions and variables
     companion object {
@@ -88,7 +98,7 @@ open class Card
     private val uuid: UUID = UUID.randomUUID()
     private var cardName: String
     private var cardImageUrl: String?
-    private var cardCount: Int = 1
+    internal var cardCount: Int = 1
 
     init {
         // Remove after "//" in name, example : "Amethyst Dragon // Explosive Crystal" -> only keep Amethyst Dragon
@@ -117,10 +127,21 @@ open class Card
         }
     }
 
-    fun recreateCard(): Card {
-        val tmpCard = Card(this.cardName, this.cardType, this.cardImageUrl, this.cardUIImage, this.hasFlashback, this.specificSet, this.cardOracleId, this.cardId)
-        tmpCard.cardCount = this.cardCount
-        return tmpCard
+    override fun toString(): String {
+        return "$cardName - $specificSet\nType: $cardType\nOracle ID: $cardOracleId\nCard ID: $cardId\n$cardImageUrl"
+    }
+
+    fun recreateCard(cardCount: Int = -1): Card {
+        return Card(
+            this.cardName,
+            this.cardType,
+            this.cardImageUrl,
+            this.cardUIImage,
+            this.hasFlashback,
+            this.specificSet,
+            this.cardOracleId,
+            this.cardId,
+            if (cardCount < 0) this.cardCount else cardCount)
     }
 }
 

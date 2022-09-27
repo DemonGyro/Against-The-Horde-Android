@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.github.againstthehorde.R
 import com.github.againstthehorde.databinding.FragmentFirstBinding
+import com.github.againstthehorde.model.DeckId
+import com.github.againstthehorde.model.DeckManager
 
 /**
  * A simple [Fragment] subclass as the default destination in the navigation.

@@ -10,14 +10,21 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
 import com.github.againstthehorde.databinding.ActivityMainBinding
+import com.github.againstthehorde.model.DeckManager
+import java.util.*
+import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        Random(Date().time)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -32,6 +39,8 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        DeckManager.createStarterDecks(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.github.againstthehorde.R
 import com.github.againstthehorde.databinding.FragmentSecondBinding
+import com.github.againstthehorde.model.DeckId
+import com.github.againstthehorde.model.DeckManager
 
 /**
  * A simple [Fragment] subclass as the second destination in the navigation.
@@ -34,8 +36,14 @@ class SecondFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.buttonSecond.setOnClickListener {
-            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+            val deck = DeckManager.getDeckForId(this.requireContext(), DeckId.Zombie, 1)
+            for (card in deck.deck) {
+                println(card.toString())
+            }
         }
+//        binding.buttonSecond.setOnClickListener {
+//            findNavController().navigate(R.id.action_SecondFragment_to_FirstFragment)
+//        }
     }
 
     override fun onDestroyView() {
