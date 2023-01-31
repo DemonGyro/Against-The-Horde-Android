@@ -47,7 +47,7 @@
 1 MIC enchantment NO Liliana's Mastery bd104c7e-311e-4b03-98d3-5f20f3a99d26 a92ee6ec-eebf-40b4-9dd9-c0551e33f5ff
 1 MIC enchantment NO Open the Graves 28778958-a1f9-4fea-b551-c193d1257f18 130978d1-0b20-4dfa-85f5-3ff2bc2cfda3
 
-## Powerfull Permanents ##
+## Powerful Permanents ##
 1 DOM creature NO Josu Vess, Lich Knight 974a46f9-aa84-4b34-bee5-c635166e5841 6ed6d088-db82-4648-a109-0e3fa1421847
 1 ME4 creature NO Zombie Master 5446c92f-ff22-4e9b-a2f6-e64c8560c1e0 c25eb8c9-4209-4fe4-8b02-be16d7d7bdf5
 

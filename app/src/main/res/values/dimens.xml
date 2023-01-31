@@ -1,3 +1,9 @@
 <resources>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="rounded_corner_large">20dp</dimen>
+    <dimen name="app_icon_margin">20dp</dimen>
+    <dimen name="large_title_font_size">34dp</dimen>
+    <dimen name="sub_headline_font_size">15dp</dimen>
+    <dimen name="title_separation">30dp</dimen>
+    <dimen name="text_separation">15dp</dimen>
 </resources>

@@ -71,7 +71,7 @@
 1 GPT enchantment NO Hissing Miasma e257d8e0-06e9-433d-a750-1962db399388 f394fd39-842f-4c98-b857-bdad3fd09758
 1 10E enchantment NO Primal Rage d6464ee4-23fc-4d68-bbda-3b53772015d1 ebe3b738-703d-465c-bc76-2b66f1e0aff2
 
-## Powerfull Permanents ##
+## Powerful Permanents ##
 1 MB1 enchantment NO Beastmaster Ascension 11b5308d-5bc0-4782-875f-a28be36e665d 3ac51aa4-710e-4171-9fb8-9f28525e3e26
 1 RTR enchantment NO Collective Blessing 7f7049e8-49ed-46da-89f7-1e40aefb3b0c 53c84c4d-e6d6-4eac-9d14-5b6cba914c3d
 1 RNA enchantment NO Ethereal Absolution e6f95e3a-61a6-40a9-8070-ffd2767764ad 0872d0ff-1060-44cc-9ed0-a6aa496440c8

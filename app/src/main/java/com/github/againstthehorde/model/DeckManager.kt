@@ -2,10 +2,12 @@ package com.github.againstthehorde.model
 
 import android.content.Context
 import android.graphics.Bitmap
+import android.util.Base64
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
 import java.io.BufferedReader
 import java.io.ByteArrayOutputStream
+import java.util.*
 import java.util.Collections.emptyList
 
 class DeckDataPattern {
@@ -14,7 +16,7 @@ class DeckDataPattern {
         const val tooStrong: String = "## Too Strong ##"
         const val availableTokens: String = "## Available Tokens ##"
         const val weakPermanents: String = "## Weak Permanents ##"
-        const val powerfulPermanents: String = "## Powerfull Permanents ##"
+        const val powerfulPermanents: String = "## Powerful Permanents ##"
     }
 }
 
@@ -246,7 +248,7 @@ class DeckManager {
                 .putString("Deck_" + deckId + "_DeckName", deckName)
                 .putString("Deck_" + deckId + "_DeckIntro", deckIntro)
                 .putString("Deck_" + deckId + "_DeckRules", deckRules)
-                .putString("Deck_" + deckId + "_Image", String(stream.toByteArray()))
+                .putString("Deck_" + deckId + "_Image", Base64.encodeToString(stream.toByteArray(), Base64.DEFAULT))
                 .putString("Deck_$deckId", deckData).apply()
         }
 

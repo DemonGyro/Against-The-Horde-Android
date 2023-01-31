@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.github.againstthehorde.view.DeckPickerView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    android:background="@android:color/white"
+    android:scrollbars="vertical">
+    <com.github.againstthehorde.view.DeckPreviewLayout
+        android:id="@+id/scrollViewContent"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<!--        <include layout="@layout/view_deck_picker_intro" android:layout_width="match_parent" android:layout_height="wrap_content" />-->
+        <View android:layout_width="match_parent" android:layout_height="250dp"/>
+        <View android:layout_width="match_parent" android:layout_height="250dp"/>
+        <View android:layout_width="match_parent" android:layout_height="250dp"/>
+
+    </com.github.againstthehorde.view.DeckPreviewLayout>
+</com.github.againstthehorde.view.DeckPickerView>

@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.AgainstTheHorde" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.AgainstTheHorde" parent="Theme.Material3.DayNight">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/purple_500</item>
+        <item name="colorPrimary">@color/ath_purple</item>
         <item name="colorPrimaryVariant">@color/purple_700</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
@@ -10,7 +10,7 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
 
@@ -22,4 +22,26 @@
     <style name="Theme.AgainstTheHorde.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="Theme.AgainstTheHorde.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+    <!-- Custom Themes -->
+
+    <!-- Menu -->
+    <style name="Theme.AgainstTheHorde.MenuText" parent="ThemeOverlay.AppCompat.Dark">
+        <item name="android:color">@android:color/white</item>
+        <item name="android:background">@android:color/black</item>
+        <item name="android:textSize">@dimen/sub_headline_font_size</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textAlignment">textStart</item>
+    </style>
+
+    <style name="Theme.AgainstTheHorde.MenuBold" parent="Theme.AgainstTheHorde.MenuText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.AgainstTheHorde.MenuTitle" parent="Theme.AgainstTheHorde.MenuBold">
+        <item name="android:textSize">@dimen/large_title_font_size</item>
+        <item name="android:textAlignment">center</item>
+    </style>
+
 </resources>

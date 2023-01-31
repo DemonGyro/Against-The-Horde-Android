@@ -62,7 +62,7 @@
 1 M21 enchantment NO Glorious Anthem e3886fe8-9b76-4613-8891-4ec74657c087 17d154d3-7ae5-43ff-9978-d974285e2c89
 1 CN2 enchantment NO Gruul War Chant a9edb891-1a38-4b8a-8539-c459e8a52315 00cbf1b0-5aa5-4420-84ea-7ea777ae34a7
 
-## Powerfull Permanents ##
+## Powerful Permanents ##
 1 RTR enchantment NO Collective Blessing 7f7049e8-49ed-46da-89f7-1e40aefb3b0c 53c84c4d-e6d6-4eac-9d14-5b6cba914c3d
 1 RNA creature NO End-Raze Forerunners 69b52907-8aff-4f2a-a391-7d1ab2669b5c a50d79fe-6d37-42f3-b7b0-0c3018282fa2
 1 MID enchantment NO Unnatural Growth 7324abaa-48da-439d-9339-b0ea5eea612e 6748a844-e185-4e3b-ac1d-8a735666d8ae

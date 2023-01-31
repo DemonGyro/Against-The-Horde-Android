@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:theme="@style/Theme.AgainstTheHorde.MenuText">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/introduction"
+        android:layout_marginBottom="@dimen/title_separation"
+        android:theme="@style/Theme.AgainstTheHorde.MenuTitle" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/access_rules_title"
+        android:layout_marginBottom="@dimen/text_separation"
+        android:theme="@style/Theme.AgainstTheHorde.MenuBold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/text_separation"
+        android:text="@string/access_rules_info" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/how_to_play_title"
+        android:layout_marginBottom="@dimen/text_separation"
+        android:theme="@style/Theme.AgainstTheHorde.MenuBold" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/text_separation"
+        android:text="@string/how_to_play_info" />
+
+</LinearLayout>
